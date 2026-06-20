@@ -13,4 +13,6 @@ public class JwtUtil {
  @Value("${jwt.expiration}") private long expiration;
  private SecretKey key(){ return Keys.hmacShaKeyFor(secret.getBytes()); }
  public String generateToken(String email){ return Jwts.builder().subject(email).issuedAt(new Date()).expiration(new Date(System.currentTimeMillis()+expiration)).signWith(key()).compact(); }
+ public String extractEmail(String token){ return Jwts.parser().verifyWith(key()).build().parseSignedClaims(token).getPayload().getSubject(); }
+ public boolean validateToken(String token){ try { extractEmail(token); return true; } catch(Exception e){ return false; } }
 }
