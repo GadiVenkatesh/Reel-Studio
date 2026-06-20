@@ -4,13 +4,11 @@ server:
 spring:
   application:
     name: auth-service
-
   datasource:
     url: jdbc:postgresql://localhost:5432/aireelstudio
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
-
   jpa:
     hibernate:
       ddl-auto: update
@@ -18,7 +16,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  flyway:
+    enabled: true
 
 jwt:
-  secret: ReelStudioSecretKeyForJwtGenerationChangeInProduction
+  secret: ReelStudioSecretKeyForJwtGenerationChangeInProduction123456789
   expiration: 86400000
